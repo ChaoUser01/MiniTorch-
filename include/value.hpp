@@ -5,7 +5,6 @@
 #include<vector>
 #include<functional>
 #include<memory>
-#include<set>
 
 struct ValueImpl;
 
@@ -32,7 +31,8 @@ class Value{
         float getGrad() const;//The Accessor for gradient
         void setData(float v);
         void setGrad(float g); //set the Gradient to g
-        Value operator+(const Value& other) const; //operator overloading
+    
+        Value operator+(const Value& other) const;
         Value operator*(const Value& other) const;
         Value operator-(const Value& other) const;
         Value operator/(const Value& other) const;
@@ -49,7 +49,7 @@ class Value{
         Value LeakyReLU();
         
         // Memory management - clears the computation graph to free memory
-        // Call this after backward() when gradients are no longer needed
+        // When Gradients are no longer needed
         void clearGraph();
 
 };

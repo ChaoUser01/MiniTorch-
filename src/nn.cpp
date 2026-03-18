@@ -1,4 +1,4 @@
-#include "nn.hpp"
+#include "../include/nn.hpp"
 #include <cstdlib>
 #include<cmath>
 
@@ -100,7 +100,7 @@ Value Linear::Neuron::operator()(const std::vector<Value>& x) {
     for (size_t i = 0; i < w.size(); ++i) {
         act = act + (w[i] * x[i]);
     }
-    return act; // <--- NO RELU HERE! Pure linear math.
+    return act; // No ReLU here! Pure linear math.
 }
 
 std::vector<Value*> Linear::Neuron::parameters() {
@@ -136,7 +136,7 @@ std::vector<Value*> Linear::parameters() {
 std::vector<Value> ReLU::operator()(const std::vector<Value>& x) {
     std::vector<Value> outs;
     for (const auto& v : x) {
-        // We create a COPY of the value to apply ReLU, 
+        // create a copy of the value to apply ReLU, 
         // effectively adding a node to the graph
         Value v_copy = v; 
         outs.push_back(v_copy.ReLU());

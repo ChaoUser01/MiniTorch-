@@ -206,7 +206,7 @@ void Value::setData(float v){
 }
 
 // Clear computation graph to free memory
-// This traverses the graph and clears all backward functions and children references
+// traverses the graph and clears all backward functions and children references
 void Value::clearGraph() {
     std::vector<std::shared_ptr<ValueImpl>> topo;
     std::set<std::shared_ptr<ValueImpl>> visited;
@@ -217,6 +217,6 @@ void Value::clearGraph() {
     // Clear all nodes in the graph
     for (auto& v : topo) {
         v->childern.clear();      // Release children references
-        v->_backward = nullptr;   // Clear backward function (releases captured refs)
+        v->_backward = nullptr;   // Clear backward function, releasing captured refs
     }
 }
