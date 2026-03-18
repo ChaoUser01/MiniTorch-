@@ -10,7 +10,7 @@ int main() {
 
     // 1. SIMPLIFIED ARCHITECTURE
     // 2 Inputs -> 4 Hidden (ReLU) -> 1 Output (Sigmoid)
-    // We map the output to 0..1 directly.
+    // map the output to 0..1 directly.
     Linear l1(2, 4);
     ReLU r1;
     Linear l2(4, 1); 
@@ -29,8 +29,7 @@ int main() {
     // Targets are simple values now, not classes
     std::vector<float> targets = {0.0f, 1.0f, 1.0f, 0.0f};
 
-    // 3. OPTIMIZER - Boost the LR!
-    // Since we were stuck, let's shove it harder. 0.5 is safe for this small net.
+    // 3. OPTIMIZER 
     SGD optimizer(model.parameters(), 0.5f); 
 
     std::cout << "--- Starting Sigmoid Regression ---" << std::endl;
@@ -59,7 +58,7 @@ int main() {
         }
     }
     
-    // --- Final Diagnostics ---
+    // Results
     std::cout << "\n--- Final Results ---" << std::endl;
     for (size_t i = 0; i < inputs.size(); ++i) {
         float pred = model(inputs[i])[0].getData();
